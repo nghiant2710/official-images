@@ -177,14 +177,6 @@
 
 0.10.28-wheezy: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.10/0.10.28/wheezy
 
-0.10.29: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.10/0.10.29
-
-0.10.29-onbuild: git://github.com/nghiant2710/docker-node@e546b91bba66472a711b0290dbf292a7496814ce 0.10/0.10.29/onbuild
-
-0.10.29-slim: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.10/0.10.29/slim
-
-0.10.29-wheezy: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.10/0.10.29/wheezy
-
 0.10.3: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.10/0.10.3
 
 0.10.3-onbuild: git://github.com/nghiant2710/docker-node@e546b91bba66472a711b0290dbf292a7496814ce 0.10/0.10.3/onbuild
@@ -192,22 +184,6 @@
 0.10.3-slim: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.10/0.10.3/slim
 
 0.10.3-wheezy: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.10/0.10.3/wheezy
-
-0.10.30: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.10/0.10.30
-
-0.10.30-onbuild: git://github.com/nghiant2710/docker-node@e546b91bba66472a711b0290dbf292a7496814ce 0.10/0.10.30/onbuild
-
-0.10.30-slim: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.10/0.10.30/slim
-
-0.10.30-wheezy: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.10/0.10.30/wheezy
-
-0.10.31: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.10/0.10.31
-
-0.10.31-onbuild: git://github.com/nghiant2710/docker-node@e546b91bba66472a711b0290dbf292a7496814ce 0.10/0.10.31/onbuild
-
-0.10.31-slim: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.10/0.10.31/slim
-
-0.10.31-wheezy: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.10/0.10.31/wheezy
 
 0.10.32: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.10/0.10.32
 
@@ -289,146 +265,14 @@
 
 0.10.9-wheezy: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.10/0.10.9/wheezy
 
-0.11.1: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.1
-
-0.11.1-onbuild: git://github.com/nghiant2710/docker-node@e546b91bba66472a711b0290dbf292a7496814ce 0.11/0.11.1/onbuild
-
-0.11.1-slim: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.1/slim
-
-0.11.1-wheezy: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.1/wheezy
-
-0.11.10: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.10
-
-0.11.10-onbuild: git://github.com/nghiant2710/docker-node@e546b91bba66472a711b0290dbf292a7496814ce 0.11/0.11.10/onbuild
-
-0.11.10-slim: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.10/slim
-
-0.11.10-wheezy: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.10/wheezy
-
-0.11.11: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.11
-
-0.11.11-onbuild: git://github.com/nghiant2710/docker-node@e546b91bba66472a711b0290dbf292a7496814ce 0.11/0.11.11/onbuild
-
-0.11.11-slim: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.11/slim
-
-0.11.11-wheezy: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.11/wheezy
-
-0.11.12: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.12
-
-0.11.12-onbuild: git://github.com/nghiant2710/docker-node@e546b91bba66472a711b0290dbf292a7496814ce 0.11/0.11.12/onbuild
-
-0.11.12-slim: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.12/slim
-
-0.11.12-wheezy: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.12/wheezy
-
-0.11.13: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.13
-
-0.11.13-onbuild: git://github.com/nghiant2710/docker-node@e546b91bba66472a711b0290dbf292a7496814ce 0.11/0.11.13/onbuild
-
-0.11.13-slim: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.13/slim
-
-0.11.13-wheezy: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.13/wheezy
-
-0.11.14: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.14
-
-0.11.14-onbuild: git://github.com/nghiant2710/docker-node@e546b91bba66472a711b0290dbf292a7496814ce 0.11/0.11.14/onbuild
-
-0.11.14-slim: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.14/slim
-
-0.11.14-wheezy: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.14/wheezy
-
-0.11.15: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.15
-
-0.11.15-onbuild: git://github.com/nghiant2710/docker-node@e546b91bba66472a711b0290dbf292a7496814ce 0.11/0.11.15/onbuild
-
-0.11.15-slim: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.15/slim
-
-0.11.15-wheezy: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.15/wheezy
-
-0.11.16: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.16
-0.11: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.16
-
-0.11.16-onbuild: git://github.com/nghiant2710/docker-node@e546b91bba66472a711b0290dbf292a7496814ce 0.11/0.11.16/onbuild
-0.11-onbuild: git://github.com/nghiant2710/docker-node@e546b91bba66472a711b0290dbf292a7496814ce 0.11/0.11.16/onbuild
-
-0.11.16-slim: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.16/slim
-0.11-slim: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.16/slim
-
-0.11.16-wheezy: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.16/wheezy
-0.11-wheezy: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.16/wheezy
-
-0.11.2: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.2
-
-0.11.2-onbuild: git://github.com/nghiant2710/docker-node@e546b91bba66472a711b0290dbf292a7496814ce 0.11/0.11.2/onbuild
-
-0.11.2-slim: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.2/slim
-
-0.11.2-wheezy: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.2/wheezy
-
-0.11.3: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.3
-
-0.11.3-onbuild: git://github.com/nghiant2710/docker-node@e546b91bba66472a711b0290dbf292a7496814ce 0.11/0.11.3/onbuild
-
-0.11.3-slim: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.3/slim
-
-0.11.3-wheezy: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.3/wheezy
-
-0.11.4: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.4
-
-0.11.4-onbuild: git://github.com/nghiant2710/docker-node@e546b91bba66472a711b0290dbf292a7496814ce 0.11/0.11.4/onbuild
-
-0.11.4-slim: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.4/slim
-
-0.11.4-wheezy: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.4/wheezy
-
-0.11.5: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.5
-
-0.11.5-onbuild: git://github.com/nghiant2710/docker-node@e546b91bba66472a711b0290dbf292a7496814ce 0.11/0.11.5/onbuild
-
-0.11.5-slim: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.5/slim
-
-0.11.5-wheezy: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.5/wheezy
-
-0.11.6: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.6
-
-0.11.6-onbuild: git://github.com/nghiant2710/docker-node@e546b91bba66472a711b0290dbf292a7496814ce 0.11/0.11.6/onbuild
-
-0.11.6-slim: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.6/slim
-
-0.11.6-wheezy: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.6/wheezy
-
-0.11.7: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.7
-
-0.11.7-onbuild: git://github.com/nghiant2710/docker-node@e546b91bba66472a711b0290dbf292a7496814ce 0.11/0.11.7/onbuild
-
-0.11.7-slim: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.7/slim
-
-0.11.7-wheezy: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.7/wheezy
-
-0.11.8: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.8
-
-0.11.8-onbuild: git://github.com/nghiant2710/docker-node@e546b91bba66472a711b0290dbf292a7496814ce 0.11/0.11.8/onbuild
-
-0.11.8-slim: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.8/slim
-
-0.11.8-wheezy: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.8/wheezy
-
-0.11.9: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.9
-
-0.11.9-onbuild: git://github.com/nghiant2710/docker-node@e546b91bba66472a711b0290dbf292a7496814ce 0.11/0.11.9/onbuild
-
-0.11.9-slim: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.9/slim
-
-0.11.9-wheezy: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.11/0.11.9/wheezy
-
-0.9.12: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.9/0.9.12
-0.9: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.9/0.9.12
+0.9.12: git://github.com/nghiant2710/docker-node@7cdcaec9f8cafd336ad05df842470383e3dd9fc9 0.9/0.9.12
+0.9: git://github.com/nghiant2710/docker-node@7cdcaec9f8cafd336ad05df842470383e3dd9fc9 0.9/0.9.12
 
 0.9.12-onbuild: git://github.com/nghiant2710/docker-node@e546b91bba66472a711b0290dbf292a7496814ce 0.9/0.9.12/onbuild
 0.9-onbuild: git://github.com/nghiant2710/docker-node@e546b91bba66472a711b0290dbf292a7496814ce 0.9/0.9.12/onbuild
 
-0.9.12-slim: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.9/0.9.12/slim
-0.9-slim: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.9/0.9.12/slim
+0.9.12-slim: git://github.com/nghiant2710/docker-node@7cdcaec9f8cafd336ad05df842470383e3dd9fc9 0.9/0.9.12/slim
+0.9-slim: git://github.com/nghiant2710/docker-node@7cdcaec9f8cafd336ad05df842470383e3dd9fc9 0.9/0.9.12/slim
 
-0.9.12-wheezy: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.9/0.9.12/wheezy
-0.9-wheezy: git://github.com/nghiant2710/docker-node@6dca5eb3259cbb30973591c58f902643ad6cfc00 0.9/0.9.12/wheezy
+0.9.12-wheezy: git://github.com/nghiant2710/docker-node@7cdcaec9f8cafd336ad05df842470383e3dd9fc9 0.9/0.9.12/wheezy
+0.9-wheezy: git://github.com/nghiant2710/docker-node@7cdcaec9f8cafd336ad05df842470383e3dd9fc9 0.9/0.9.12/wheezy
