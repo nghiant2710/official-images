@@ -14,6 +14,10 @@ src="$dir/src"
 logs="$dir/logs"
 namespaces='_'
 docker='docker'
+tagRepo="https://nghiant2710:$GH_TOKEN@github.com/resin-io-library/base-image-tag.git"
+tagDir='base-image-tag'
+
+pip install docker-py
 
 library="$(readlink -f "$library")"
 src="$(readlink -f "$src")"
@@ -37,12 +41,19 @@ push_image() {
 				didFail=1
 				continue
 			else
+				python export-tag-detail.py "$repoTag" "$tagDir/library"
+				doCommitTag=1
 				if [ "$doDatestamp" ] && [ "$tag" != "latest" ]; then
 					echo "Pushing $namespace/$repoTag-$dateStamp..."
 					if ! "$docker" push "$namespace/$repoTag-$dateStamp" &>> "$thisLog" < /dev/null; then
 						echo >&2 "- $namespace/$repoTag-$dateStamp failed to push; see $thisLog"
 						didFail=1
 						continue
+					else
+						python export-tag-detail.py "$repoTag-$dateStamp" "$tagDir/library"
+						"$docker" rmi -f "$namespace/$repoTag-$dateStamp" || true
+						"$docker" rmi -f "$namespace/$repoTag" || true
+						"$docker" rmi -f "$repoTag" || true
 					fi
 				fi
 			fi
@@ -209,6 +220,12 @@ latestLogDir="$logs/latest" # this gets shiny symlinks to the latest buildlog fo
 mkdir -p "$latestLogDir"
 
 didFail=
+doCommitTag=
+
+# clone base-image-tag repo before every build
+rm -rf $tagDir
+git clone $tagRepo
+mkdir -p $tagDir/library
 
 # gather all the `repo:tag` combos to build
 for repoTag in "${repos[@]}"; do
@@ -244,6 +261,9 @@ for repoTag in "${repos[@]}"; do
 		
 		cmd=( cat "$repoFile" )
 	fi
+
+	# output header for each build to a temp file
+	echo "##### Build Date: $(date +'%Y-%m-%d') #####" > "$tagDir/library/$repo-temp"
 	
 	if [ "${repoGitRepo[$repoTag]}" ]; then
 		queue+=( "$repoTag" )
@@ -450,4 +470,18 @@ while [ "$#" -gt 0 ]; do
 	esac
 done
 
+# Append temp file to the top of commit file and push
+if [ ! -z "$doCommitTag" ]; then
+	printf "##################################\n\n" >> "$tagDir/library/$repo-temp"
+	if [ -f "$tagDir/library/$repo" ]; then
+		cat "$tagDir/library/$repo" >> "$tagDir/library/$repo-temp"
+	fi
+	mv "$tagDir/library/$repo-temp" "$tagDir/library/$repo"
+	cd "$tagDir"
+	git add .
+	git commit -m "Automated Commit: new tags for $repo, build date:$(date +'%Y-%m-%d')"
+	git push origin master
+fi
+
+rm -rf "$tagDir"
 [ -z "$didFail" ]
