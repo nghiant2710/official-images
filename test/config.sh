@@ -6,6 +6,8 @@ globalTests+=(
 	#cve-2014--shellshock
 	#no-hard-coded-passwords
 	#override-cmd
+	resin-cmd-exec-form
+	resin-cmd-shell-form
 )
 
 # for "explicit" images, only run tests that are explicitly specified for that image/variant
