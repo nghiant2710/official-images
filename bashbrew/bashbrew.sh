@@ -60,6 +60,12 @@ get_image_type() {
 }
 
 push_image() {
+	if [ $BUILD_BRANCH != 'master' ]; then
+		# Don't push if it's not master branch.
+		echo "Stop pushing since the build branch is not master branch."
+		return
+	fi
+
 	for namespace in $namespaces; do
 		if [ "$namespace" = '_' ]; then
 			# can't "docker push debian"; skip this namespace
