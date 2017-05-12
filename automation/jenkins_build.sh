@@ -87,13 +87,15 @@ else
 	done
 fi
 
-# if the build is marked as failed, print failed images and tidy up everything
-if [ $exitCode -eq 1 ]; then
-	echo Failed images: ${failedList[@]}
-	# we need to clean up all untagged images when builds fail.
-	# First remove all stopped containers.
-	docker rm -v $(docker ps --filter status=exited --filter "ancestor=$LIBRARY" -q)
-	# Then clean up untagged images.
-	docker rmi $(docker images --filter dangling=true -q)
-	exit 1
-fi	
+if [ -f image-list ]; then
+	images=$(cat image-list | grep -vE '^#|^\s*$')
+	for image in "${images[@]}"; do
+		docker rmi -f "$image"
+	done
+	rm -f image-list
+fi
+
+# Delete all stopped containers
+docker ps -q -f status=exited | xargs --no-run-if-empty docker rm -f
+# Delete all unused images
+docker images -q -f dangling=true | xargs --no-run-if-empty docker rmi -f	

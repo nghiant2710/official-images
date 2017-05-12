@@ -60,7 +60,7 @@ get_image_type() {
 }
 
 push_image() {
-	if [ $BUILD_BRANCH != 'master' ]; then
+	if [ "$BUILD_BRANCH" != 'master' ]; then
 		# Don't push if it's not master branch.
 		echo "Stop pushing since the build branch is not master branch."
 		return
@@ -153,7 +153,6 @@ clean_image() {
 		fi
 		remove_image "$namespace/$repoTag"
 		remove_image "$repoTag"
-
 	done
 }
 
@@ -474,6 +473,7 @@ while [ "$#" -gt 0 ]; do
 				if ! (
 					set -x
 					"$docker" pull "resin/$repoTag"
+					cat "$gitRepo/$gitDir/Dockerfile" | awk 'toupper($1) == "FROM" { print $2 ~ /:/ ? $2 : $2":latest" }' >> image-list
 					"$docker" build --pull -t "$repoTag" "$gitRepo/$gitDir"
 				) &>> "$thisLog"; then
 					echo "- failed 'docker build'; see $thisLog"
