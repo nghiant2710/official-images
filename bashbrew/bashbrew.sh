@@ -1,5 +1,6 @@
 #!/bin/bash
-set -e
+set -x
+PS4='+\t '
 
 # make sure we can GTFO
 trap 'echo >&2 Ctrl+C captured, exiting; exit 1' SIGINT
@@ -77,40 +78,24 @@ push_image() {
 				tag="${repoTag#*:}"
 
 				"$docker" tag "$repo:$firstTag" "$namespace/$repoTag"
+				echo "Inspecting alias $namespace/$repoTag"
+				"$docker" image inspect "$namespace/$repoTag"
 				echo "Pushing $namespace/$repoTag..."
-				if ! "$docker" push "$namespace/$repoTag" &>> "$thisLog" < /dev/null; then
-					echo >&2 "- $namespace/$repoTag failed to push; see $thisLog"
-					didFail=1
-					continue
-				else
-					if [[ $repo == *"debian"* ]]; then
-						echo "Pushing $namespace/${repoTag/-debian/}..."
-						"$docker" tag "$namespace/$repoTag" "$namespace/${repoTag/-debian/}"
-						if ! "$docker" push "$namespace/${repoTag/-debian/}" &>> "$thisLog" < /dev/null; then
-							echo >&2 "- $namespace/${repoTag/-debian/} failed to push; see $thisLog"
-							didFail=1
-							continue
-						fi
-					fi
+				"$docker" push "$namespace/$repoTag"
+				if [[ $repo == *"debian"* ]]; then
+					echo "Pushing $namespace/${repoTag/-debian/}..."
+					"$docker" tag "$namespace/$repoTag" "$namespace/${repoTag/-debian/}"
+					"$docker" push "$namespace/${repoTag/-debian/}"
 				fi
 				if [ "$aliases" ]; then
 					for alias in $aliases; do
 						"$docker" tag "$namespace/$repoTag" "$namespace/$alias$imageType:$tag"
 						echo "Pushing alias: $namespace/$alias$imageType:$tag..."
-						if ! "$docker" push "$namespace/$alias$imageType:$tag" &>> "$thisLog" < /dev/null; then
-							echo >&2 "- $namespace/$alias$imageType:$tag failed to push; see $thisLog"
-							didFail=1
-							continue
-						else
-							if [[ $repo == *"debian"* ]]; then
-								"$docker" tag "$namespace/$repoTag" "$namespace/$alias${imageType/-debian/}:$tag"
-								echo "Pushing $namespace/$alias${imageType/-debian/}:$tag..."
-								if ! "$docker" push "$namespace/$alias${imageType/-debian/}:$tag" &>> "$thisLog" < /dev/null; then
-									echo >&2 "- $namespace/$alias${imageType/-debian/}:$tag failed to push; see $thisLog"
-									didFail=1
-									continue
-								fi
-							fi
+						"$docker" push "$namespace/$alias$imageType:$tag"
+						if [[ $repo == *"debian"* ]]; then
+							"$docker" tag "$namespace/$repoTag" "$namespace/$alias${imageType/-debian/}:$tag"
+							echo "Pushing alias: $namespace/$alias${imageType/-debian/}:$tag..."
+							"$docker" push "$namespace/$alias${imageType/-debian/}:$tag"
 						fi
 						# Clean up pushed aliases
 						remove_image "$namespace/$alias$imageType:$tag"
@@ -445,16 +430,10 @@ while [ "$#" -gt 0 ]; do
 					didFail=1
 					continue
 				fi
-				
-				if ! (
-					set -x
-					"$docker" pull "balenalib/$repoTag"
-					"$docker" build --pull -t "$repoTag" "$gitRepo/$gitDir"
-				) &>> "$thisLog"; then
-					echo "- failed 'docker build'; see $thisLog"
-					didFail=1
-					continue
-				fi
+
+				"$docker" build --pull -t "$repoTag" "$gitRepo/$gitDir"
+				echo "Inspecting $repoTag"
+				"$docker" image inspect "$repoTag"
 				push_image
 			fi
 			;;
