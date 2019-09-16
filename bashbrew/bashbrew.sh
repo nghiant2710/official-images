@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x
+set -e
 PS4='+\t '
 
 # make sure we can GTFO
@@ -21,6 +21,7 @@ src="$(readlink -f "$src")"
 logs="$(readlink -f "$logs")"
 
 self="$(basename "$0")"
+declare -a danglingImages=()
 
 check_image_type() {
 	local repo="$1"
@@ -63,6 +64,17 @@ get_image_type() {
 	esac
 }
 
+push_in_background() {
+	local image=$1
+
+	if ! "$docker" push "$image" &>> "$thisLog" < /dev/null; then
+		echo >&2 "- $image failed to push; see $thisLog"
+		didFail=1
+	fi
+
+	remove_image "$image"
+}
+
 push_image() {
 	for namespace in $namespaces; do
 		if [ "$namespace" = '_' ]; then
@@ -78,35 +90,36 @@ push_image() {
 				tag="${repoTag#*:}"
 
 				"$docker" tag "$repo:$firstTag" "$namespace/$repoTag"
-				echo "Inspecting alias $namespace/$repoTag"
-				"$docker" image inspect "$namespace/$repoTag"
 				echo "Pushing $namespace/$repoTag..."
-				"$docker" push "$namespace/$repoTag"
+				push_in_background "$namespace/$repoTag" &
 				if [[ $repo == *"debian"* ]]; then
 					echo "Pushing $namespace/${repoTag/-debian/}..."
-					"$docker" tag "$namespace/$repoTag" "$namespace/${repoTag/-debian/}"
-					"$docker" push "$namespace/${repoTag/-debian/}"
+					"$docker" tag "$repo:$firstTag" "$namespace/${repoTag/-debian/}"
+					push_in_background "$namespace/${repoTag/-debian/}" &
 				fi
+
 				if [ "$aliases" ]; then
 					for alias in $aliases; do
-						"$docker" tag "$namespace/$repoTag" "$namespace/$alias$imageType:$tag"
+						"$docker" tag "$repo:$firstTag" "$namespace/$alias$imageType:$tag"
 						echo "Pushing alias: $namespace/$alias$imageType:$tag..."
-						"$docker" push "$namespace/$alias$imageType:$tag"
+						push_in_background "$namespace/$alias$imageType:$tag" &
+						
 						if [[ $repo == *"debian"* ]]; then
-							"$docker" tag "$namespace/$repoTag" "$namespace/$alias${imageType/-debian/}:$tag"
-							echo "Pushing alias: $namespace/$alias${imageType/-debian/}:$tag..."
-							"$docker" push "$namespace/$alias${imageType/-debian/}:$tag"
+							"$docker" tag "$repo:$firstTag" "$namespace/$alias${imageType/-debian/}:$tag"
+							echo "Pushing $namespace/$alias${imageType/-debian/}:$tag..."
+							push_in_background "$namespace/$alias${imageType/-debian/}:$tag" &
 						fi
 						# Clean up pushed aliases
-						remove_image "$namespace/$alias$imageType:$tag"
-						remove_image "$namespace/$alias${imageType/-debian/}:$tag"
+						#remove_image "$namespace/$alias$imageType:$tag"
+						#remove_image "$namespace/$alias${imageType/-debian/}:$tag"
 					done
 				fi
-				remove_image "$namespace/${repoTag/-debian/}"
-				remove_image "$namespace/$repoTag"
+				#remove_image "$namespace/${repoTag/-debian/}"
+				#remove_image "$namespace/$repoTag"
 			done
 			# Clean up
-			remove_image "$repo:$firstTag"
+			danglingImages+=("$repo:$firstTag")
+			#remove_image "$repo:$firstTag"
 		else
 			echo "$docker push" "$namespace/$repoTag"
 		fi
@@ -430,10 +443,16 @@ while [ "$#" -gt 0 ]; do
 					didFail=1
 					continue
 				fi
-
-				"$docker" build --pull -t "$repoTag" "$gitRepo/$gitDir"
-				echo "Inspecting $repoTag"
-				"$docker" image inspect "$repoTag"
+				
+				if ! (
+					set -x
+					"$docker" pull "balenalib/$repoTag"
+					"$docker" build --pull -t "$repoTag" "$gitRepo/$gitDir"
+				) &>> "$thisLog"; then
+					echo "- failed 'docker build'; see $thisLog"
+					didFail=1
+					continue
+				fi
 				push_image
 			fi
 			;;
@@ -450,6 +469,13 @@ while [ "$#" -gt 0 ]; do
 			push_image
 			;;
 	esac
+done
+
+wait
+
+#Remove all dangling images
+for image in ${danglingImages[*]}; do
+    remove_image "$image"
 done
 
 # Clean up all the Dockerfiles after building. This will free up hundreds of MB of space on the build server.
